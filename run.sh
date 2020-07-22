@@ -23,7 +23,7 @@ printf "\nRunning the PHP version : \n"
 php mergesort.php
 
 printf "\nRunning the Scala version : \n"
-scala mergesort.scala 
+scala -nc mergesort.scala
 
 printf "\nRunning the C++ version : \n"
 g++ -std=c++17 mergesort.cpp && ./a.out && rm -f a.out
@@ -47,7 +47,7 @@ printf "\nRunning the C# version : \n"
 mcs -out:mergesort.exe mergesort.cs && mono mergesort.exe
 
 printf "\nRunning the Kotlin version : \n"
-kotlin mergesort.kt -include-runtime -d mergesort.jar && java -jar mergesort
+kotlinc mergesort.kt -include-runtime -d mergesort.jar && java -jar mergesort.jar
 
 printf "\nRunning the Prolog version : \n"
 rm -f mergesort && swipl -g main --stand_alone=true -o mergesort -c mergesort.pro && ./mergesort
@@ -62,7 +62,7 @@ printf "\nRunning the Ruby version : \n"
 ruby mergesort.rb
 
 printf "\nRunning the R version : \n"
-Rscript mergesort.r
+Rscript mergesort.r 
 
 printf "\nRunning the Elixir version : \n"
 elixir mergesort.exs
@@ -88,6 +88,25 @@ swift mergesort.swift
 printf "\nRunning the F# version : \n"
 dotnet fsi mergesort.fsx
 
+printf "\nRunning the ATS version : \n"
+myatscc mergesort.dats && ./mergesort_dats
+
+printf "\nRunning the D Lang version : \n"
+rdmd mergesort.d
+
+printf "\nRunning the Brainfuck version : \n"
+bf mergesort.b
+
+printf "\nRunning the TCL version : \n"
+tclsh mergesort.tcl
+
+printf "\nRunning the Objective C version : \n"
+clang -fobjc-arc -framework Foundation mergesort.m -o mergesort && ./mergesort
+
+printf "\nRunning the Ada version : \n"
+rm -f mergesort.ali mergesort.o mergesort && gnatmake mergesort.adb && ./mergesort && rm -f mergesort.ali mergesort.o mergesort
+
 end=`date +%s`
 runtime=$((end-start))
-echo "$runtime"
+printf "\n"
+echo "Script ran in $runtime seconds"
